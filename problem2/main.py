@@ -1,5 +1,22 @@
 def maximum_buy_product(money, product_price):
-    return 0
+    # Mengurutkan harga produk dari yang termurah
+    product_price.sort()
+    
+    # Membuat sebuah set kosong untuk melacak produk yang sudah dibeli
+    bought_products = set()
+    
+    # Menghitung jumlah produk yang dapat dibeli
+    count = 0
+
+    for price in product_price:
+        if price <= money and price not in bought_products:
+            money -= price
+            bought_products.add(price)
+            count += 1
+        else:
+            break
+
+    return count
 
 if __name__ == "__main__":
     print(maximum_buy_product(50000, [25000, 25000, 10000, 14000]))      # 3
